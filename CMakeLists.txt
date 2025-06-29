@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(${PROJECT_NAME}
     src/black_scholes.cxx
-    src/option.cxx
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE "include")
