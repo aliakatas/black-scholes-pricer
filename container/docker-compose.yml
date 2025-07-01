@@ -1,0 +1,26 @@
+services:
+  black-scholes-pricer-dev:
+    build: 
+      context: .
+      args:
+        USERNAME: ${USER}  
+        USER_UID: ${USER_UID}
+        USER_GID: ${USER_GID}
+    image: docker.io/aristos86/black-scholes-pricer-dev:latest
+    container_name: black-scholes-pricer-dev
+    # either...
+    command: sleep infinity  # This keeps the container running
+    # ... or...
+    # stdin_open: true  # equivalent to -i
+    # tty: true         # equivalent to -t
+    volumes:
+      - ..:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "3000:3000"
+      - "8080:8080"
+
+# build with 
+#     USER=$(whoami) USER_UID=$(id -u) USER_GID=$(id -g) docker compose build
+# run with
+#     USER=$(whoami) USER_UID=$(id -u) USER_GID=$(id -g) docker compose up -d
